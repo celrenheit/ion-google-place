@@ -51,6 +51,9 @@ angular.module('ion-google-place', [])
                         var searchInputElement = angular.element(el.element.find('input'));
 
                         scope.selectLocation = function(location){
+                            // Ugly Fix to have ng-model binded to parent controller of this directive
+                            scope.$parent.$parent.$parent[attrs.ngModel] = location;
+                            // Set value to the view
                             ngModel.$setViewValue(location);
                             ngModel.$render();
                             el.element.css('display', 'none');
